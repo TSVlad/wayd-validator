@@ -7,6 +7,8 @@ import reactor.core.publisher.Mono;
 import ru.tsvlad.waydvalidator.restapi.dto.BadWordDTO;
 import ru.tsvlad.waydvalidator.service.BadWordService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/bad-words")
 @AllArgsConstructor
@@ -14,7 +16,7 @@ public class BadWordsController {
     private BadWordService badWordService;
 
     @GetMapping
-    public Flux<BadWordDTO> getAll() {
+    public List<BadWordDTO> getAll() {
         return badWordService.getAllBadWords();
     }
 
