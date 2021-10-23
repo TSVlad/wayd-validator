@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import ru.tsvlad.waydvalidator.messaging.AbstractMessage;
 import ru.tsvlad.waydvalidator.messaging.dto.EventDTO;
-import ru.tsvlad.waydvalidator.messaging.type.EventMessageType;
+import ru.tsvlad.waydvalidator.messaging.consumer.msg.type.EventMessageType;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

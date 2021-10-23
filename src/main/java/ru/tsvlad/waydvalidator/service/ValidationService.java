@@ -1,8 +1,9 @@
 package ru.tsvlad.waydvalidator.service;
 
-import org.springframework.stereotype.Service;
 import ru.tsvlad.waydvalidator.messaging.dto.EventDTO;
+import ru.tsvlad.waydvalidator.messaging.dto.UserPublicDTO;
 
 public interface ValidationService {
     boolean isValidEvent(EventDTO eventDTO);
+    boolean isValidUser(UserPublicDTO userPublicDTO);
 }
