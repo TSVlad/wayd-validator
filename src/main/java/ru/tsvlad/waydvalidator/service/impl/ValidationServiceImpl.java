@@ -3,7 +3,7 @@ package ru.tsvlad.waydvalidator.service.impl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.tsvlad.waydvalidator.messaging.dto.EventDTO;
-import ru.tsvlad.waydvalidator.messaging.dto.UserPublicDTO;
+import ru.tsvlad.waydvalidator.messaging.dto.UserDTO;
 import ru.tsvlad.waydvalidator.restapi.dto.BadWordDTO;
 import ru.tsvlad.waydvalidator.service.BadWordService;
 import ru.tsvlad.waydvalidator.service.ValidationService;
@@ -22,8 +22,8 @@ public class ValidationServiceImpl implements ValidationService {
     }
 
     @Override
-    public boolean isValidUser(UserPublicDTO userPublicDTO) {
-        String userString = userToString(userPublicDTO);
+    public boolean isValidUser(UserDTO userDTO) {
+        String userString = userToString(userDTO);
         return validateBadWords(userString);
     }
 
@@ -35,10 +35,10 @@ public class ValidationServiceImpl implements ValidationService {
                 eventDTO.getContacts();
     }
 
-    private String userToString(UserPublicDTO userPublicDTO) {
-        return userPublicDTO.getUsername() +
+    private String userToString(UserDTO userDTO) {
+        return userDTO.getUsername() +
                 " " +
-                userPublicDTO.getContacts();
+                userDTO.getContacts();
     }
 
     private boolean validateBadWords(String str) {
