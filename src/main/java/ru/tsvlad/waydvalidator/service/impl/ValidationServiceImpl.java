@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.tsvlad.waydvalidator.messaging.dto.EventDTO;
 import ru.tsvlad.waydvalidator.messaging.dto.UserDTO;
+import ru.tsvlad.waydvalidator.messaging.producer.msg.Validity;
 import ru.tsvlad.waydvalidator.restapi.dto.BadWordDTO;
 import ru.tsvlad.waydvalidator.service.BadWordService;
 import ru.tsvlad.waydvalidator.service.ValidationService;
@@ -16,15 +17,15 @@ public class ValidationServiceImpl implements ValidationService {
     private final BadWordService badWordService;
 
     @Override
-    public boolean isValidEvent(EventDTO eventDTO) {
+    public Validity isValidEvent(EventDTO eventDTO) {
         String eventString = eventToString(eventDTO);
-        return validateBadWords(eventString);
+        return validateBadWords(eventString) ? Validity.VALID : Validity.NOT_VALID;
     }
 
     @Override
-    public boolean isValidUser(UserDTO userDTO) {
+    public Validity isValidUser(UserDTO userDTO) {
         String userString = userToString(userDTO);
-        return validateBadWords(userString);
+        return validateBadWords(userString) ? Validity.VALID : Validity.NOT_VALID;
     }
 
     private String eventToString(EventDTO eventDTO) {

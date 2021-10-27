@@ -12,5 +12,5 @@ public class ValidatorMessage extends AbstractMessage {
     private ValidatorMessageType type;
     private String eventId;
     private long userId;
-    private boolean isValid;
+    private Validity validity;
 }

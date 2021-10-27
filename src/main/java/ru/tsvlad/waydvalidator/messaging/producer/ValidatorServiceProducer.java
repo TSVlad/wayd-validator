@@ -5,25 +5,26 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import ru.tsvlad.waydvalidator.messaging.producer.msg.ValidatorMessage;
 import ru.tsvlad.waydvalidator.messaging.producer.msg.ValidatorMessageType;
+import ru.tsvlad.waydvalidator.messaging.producer.msg.Validity;
 
 @Service
 @AllArgsConstructor
 public class ValidatorServiceProducer {
     private final KafkaTemplate<Long, ValidatorMessage> validatorMessageKafkaTemplate;
 
-    public void eventValidation(String id, boolean isValid) {
+    public void eventValidation(String id, Validity validity) {
         send(ValidatorMessage.builder()
                 .type(ValidatorMessageType.EVENT_VALIDATED)
                 .eventId(id)
-                .isValid(isValid)
+                .validity(validity)
                 .build());
     }
 
-    public void userValidated(long id, boolean isValid) {
+    public void userValidated(long id, Validity validity) {
         send(ValidatorMessage.builder()
                 .type(ValidatorMessageType.USER_VALIDATED)
                 .userId(id)
-                .isValid(isValid)
+                .validity(validity)
                 .build());
     }
 
