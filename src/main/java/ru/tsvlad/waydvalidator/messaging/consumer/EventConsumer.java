@@ -17,7 +17,8 @@ public class EventConsumer {
     @KafkaListener(id = "validator-event-customer", topics = {"event-to-validator"}, containerFactory = "singleFactory")
     public void consume(EventMessage eventMessage) {
         switch (eventMessage.getType()) {
-            case CREATED:
+            case EVENT_CREATED:
+            case EVENT_UPDATED:
                 validatorServiceProducer.eventValidation(eventMessage.getEventDTO().getId(), validationService.isValidEvent(eventMessage.getEventDTO()));
                 break;
         }
