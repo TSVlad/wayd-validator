@@ -39,7 +39,9 @@ public class ValidationServiceImpl implements ValidationService {
     private String userToString(UserDTO userDTO) {
         return userDTO.getUsername() +
                 " " +
-                userDTO.getContacts();
+                userDTO.getContacts() +
+                " " +
+                userDTO.getDescription();
     }
 
     private boolean validateBadWords(String str) {
