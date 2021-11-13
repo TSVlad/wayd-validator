@@ -19,7 +19,7 @@ public class EventConsumer {
         switch (eventMessage.getType()) {
             case EVENT_CREATED:
             case EVENT_UPDATED:
-                validatorServiceProducer.eventValidation(eventMessage.getEventDTO().getId(), validationService.isValidEvent(eventMessage.getEventDTO()));
+                validatorServiceProducer.eventValidation(eventMessage.getEventDTO().getId(), validationService.isValidEvent(eventMessage.getEventDTO()), eventMessage.getUserInfo());
                 break;
         }
     }

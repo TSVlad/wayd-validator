@@ -3,6 +3,7 @@ package ru.tsvlad.waydvalidator.messaging.producer;
 import lombok.AllArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import ru.tsvlad.waydvalidator.config.security.JwtPayload;
 import ru.tsvlad.waydvalidator.messaging.producer.msg.ValidatorMessage;
 import ru.tsvlad.waydvalidator.messaging.producer.msg.ValidatorMessageType;
 import ru.tsvlad.waydvalidator.messaging.producer.msg.Validity;
@@ -12,11 +13,12 @@ import ru.tsvlad.waydvalidator.messaging.producer.msg.Validity;
 public class ValidatorServiceProducer {
     private final KafkaTemplate<Long, ValidatorMessage> validatorMessageKafkaTemplate;
 
-    public void eventValidation(String id, Validity validity) {
+    public void eventValidation(String id, Validity validity, JwtPayload userInfo) {
         send(ValidatorMessage.builder()
                 .type(ValidatorMessageType.EVENT_VALIDATED)
                 .eventId(id)
                 .validity(validity)
+                .userInfo(userInfo)
                 .build());
     }
 
