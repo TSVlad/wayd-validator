@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import ru.tsvlad.waydvalidator.messaging.producer.msg.Validity;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +20,10 @@ public class EventDTO {
     private String contacts;
     private String category;
     private String subCategory;
-    private LocalDateTime dateTime;
+    private ZonedDateTime dateTime;
     private int minNumberOfParticipants;
     private int maxNumberOfParticipants;
-    private LocalDateTime deadline;
+    private ZonedDateTime deadline;
     private List<String> picturesRefs = new ArrayList<>();
     private GeoJsonPoint point;
 
