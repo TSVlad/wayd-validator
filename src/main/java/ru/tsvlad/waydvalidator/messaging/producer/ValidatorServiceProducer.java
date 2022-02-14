@@ -1,9 +1,9 @@
 package ru.tsvlad.waydvalidator.messaging.producer;
 
 import lombok.AllArgsConstructor;
+import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import ru.tsvlad.waydvalidator.config.security.JwtPayload;
 import ru.tsvlad.waydvalidator.messaging.producer.msg.ValidatorMessage;
 import ru.tsvlad.waydvalidator.messaging.producer.msg.ValidatorMessageType;
 import ru.tsvlad.waydvalidator.messaging.producer.msg.Validity;
@@ -13,7 +13,7 @@ import ru.tsvlad.waydvalidator.messaging.producer.msg.Validity;
 public class ValidatorServiceProducer {
     private final KafkaTemplate<Long, ValidatorMessage> validatorMessageKafkaTemplate;
 
-    public void eventValidation(String id, Validity validity, JwtPayload userInfo) {
+    public void eventValidation(String id, Validity validity, KeycloakAuthenticationToken userInfo) {
         send(ValidatorMessage.builder()
                 .type(ValidatorMessageType.EVENT_VALIDATED)
                 .eventId(id)
@@ -22,7 +22,7 @@ public class ValidatorServiceProducer {
                 .build());
     }
 
-    public void userValidated(long id, Validity validity) {
+    public void userValidated(String id, Validity validity) {
         send(ValidatorMessage.builder()
                 .type(ValidatorMessageType.USER_VALIDATED)
                 .userId(id)

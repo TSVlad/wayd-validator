@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import ru.tsvlad.waydvalidator.messaging.consumer.msg.UserMessage;
-import ru.tsvlad.waydvalidator.messaging.dto.UserDTO;
+import ru.tsvlad.waydvalidator.messaging.dto.UserKafkaDTO;
 import ru.tsvlad.waydvalidator.messaging.producer.ValidatorServiceProducer;
 import ru.tsvlad.waydvalidator.service.ValidationService;
 
@@ -25,8 +25,7 @@ public class UserConsumer {
         }
     }
 
-    private void validateUser(UserDTO userDTO) {
-        System.out.println("USER");
-        validatorServiceProducer.userValidated(userDTO.getId(), validationService.isValidUser(userDTO));
+    private void validateUser(UserKafkaDTO userKafkaDTO) {
+        validatorServiceProducer.userValidated(userKafkaDTO.getId(), validationService.isValidUser(userKafkaDTO));
     }
 }

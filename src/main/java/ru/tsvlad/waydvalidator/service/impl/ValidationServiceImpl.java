@@ -3,7 +3,7 @@ package ru.tsvlad.waydvalidator.service.impl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.tsvlad.waydvalidator.messaging.dto.EventDTO;
-import ru.tsvlad.waydvalidator.messaging.dto.UserDTO;
+import ru.tsvlad.waydvalidator.messaging.dto.UserKafkaDTO;
 import ru.tsvlad.waydvalidator.messaging.producer.msg.Validity;
 import ru.tsvlad.waydvalidator.restapi.dto.BadWordDTO;
 import ru.tsvlad.waydvalidator.service.BadWordService;
@@ -23,8 +23,8 @@ public class ValidationServiceImpl implements ValidationService {
     }
 
     @Override
-    public Validity isValidUser(UserDTO userDTO) {
-        String userString = userToString(userDTO);
+    public Validity isValidUser(UserKafkaDTO userKafkaDTO) {
+        String userString = userToString(userKafkaDTO);
         return validateBadWords(userString) ? Validity.VALID : Validity.NOT_VALID;
     }
 
@@ -36,12 +36,16 @@ public class ValidationServiceImpl implements ValidationService {
                 eventDTO.getContacts();
     }
 
-    private String userToString(UserDTO userDTO) {
-        return userDTO.getUsername() +
+    private String userToString(UserKafkaDTO userKafkaDTO) {
+        return userKafkaDTO.getUsername() +
                 " " +
-                userDTO.getContacts() +
+                userKafkaDTO.getContacts() +
                 " " +
-                userDTO.getDescription();
+                userKafkaDTO.getDescription() +
+                " " +
+                userKafkaDTO.getName() +
+                " " +
+                userKafkaDTO.getSurname();
     }
 
     private boolean validateBadWords(String str) {

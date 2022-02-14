@@ -3,7 +3,6 @@ package ru.tsvlad.waydvalidator.messaging.consumer.msg;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import ru.tsvlad.waydvalidator.config.security.JwtPayload;
 import ru.tsvlad.waydvalidator.messaging.AbstractMessage;
 import ru.tsvlad.waydvalidator.messaging.dto.EventDTO;
 import ru.tsvlad.waydvalidator.messaging.consumer.msg.type.EventMessageType;
@@ -14,7 +13,6 @@ import ru.tsvlad.waydvalidator.messaging.consumer.msg.type.EventMessageType;
 public class EventMessage extends AbstractMessage {
     private EventMessageType type;
     private EventDTO eventDTO;
-    private JwtPayload userInfo;
 
     public EventMessage() {
         super();

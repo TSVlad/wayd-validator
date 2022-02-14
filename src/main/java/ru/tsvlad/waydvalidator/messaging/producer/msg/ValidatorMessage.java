@@ -1,18 +1,17 @@
 package ru.tsvlad.waydvalidator.messaging.producer.msg;
 
 import lombok.*;
-import ru.tsvlad.waydvalidator.config.security.JwtPayload;
+import lombok.experimental.SuperBuilder;
 import ru.tsvlad.waydvalidator.messaging.AbstractMessage;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 public class ValidatorMessage extends AbstractMessage {
     private ValidatorMessageType type;
     private String eventId;
-    private long userId;
+    private String userId;
     private Validity validity;
-    private JwtPayload userInfo;
 }

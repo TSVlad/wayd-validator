@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import ru.tsvlad.waydvalidator.messaging.AbstractMessage;
 import ru.tsvlad.waydvalidator.messaging.consumer.msg.type.UserMessageType;
-import ru.tsvlad.waydvalidator.messaging.dto.UserDTO;
+import ru.tsvlad.waydvalidator.messaging.dto.UserKafkaDTO;
 
 
 @EqualsAndHashCode(callSuper = true)
@@ -15,5 +15,5 @@ import ru.tsvlad.waydvalidator.messaging.dto.UserDTO;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserMessage extends AbstractMessage {
     private UserMessageType type;
-    private UserDTO userDTO;
+    private UserKafkaDTO userDTO;
 }
