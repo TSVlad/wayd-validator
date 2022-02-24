@@ -17,9 +17,11 @@ spring:
     mongodb:
       auto-index-creation: true
       uri: mongodb://localhost:27017/wayd-validator
-
-jwt:
-  secret: very-secret-key
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8484/auth/realms/WAYD/protocol/openid-connect/certs
 
 wayd:
   kafka:

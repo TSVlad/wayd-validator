@@ -1,7 +1,6 @@
 package ru.tsvlad.waydvalidator.messaging.producer;
 
 import lombok.AllArgsConstructor;
-import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import ru.tsvlad.waydvalidator.config.commons.UserInfo;
