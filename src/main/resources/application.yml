@@ -16,7 +16,7 @@ spring:
   data:
     mongodb:
       auto-index-creation: true
-      uri: mongodb://localhost:27017/wayd-validator
+      uri: mongodb://localhost:27023/wayd-validator
   security:
     oauth2:
       resourceserver:
